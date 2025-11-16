@@ -1,1 +1,54 @@
-<!DOCTYPE html><html><body>Admin placeholder</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin | Open Road Exchange</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+<h1>Open Road Exchange – Admin Panel</h1>
+
+<div id="loginSection">
+  <h2>Admin Login</h2>
+  <input id="adminUser" placeholder="username">
+  <input id="adminPass" type="password" placeholder="password">
+  <button id="loginBtn">Login</button>
+  <p id="loginError" class="error-text"></p>
+</div>
+
+<div id="adminSection" style="display:none;">
+  <h2>Inventory Management</h2>
+
+  <form id="vehicleForm">
+    <input type="hidden" id="vehicleId">
+    <label>Title <input id="title"></label>
+    <label>Type <select id="type">
+      <option value="rv">RV</option>
+      <option value="truck">Truck</option>
+      <option value="trailer">Trailer</option>
+    </select></label>
+    <label>Year <input id="year"></label>
+    <label>Price <input id="price"></label>
+    <label>Mileage <input id="mileage"></label>
+    <label>Stock # <input id="stock"></label>
+    <label>Status <select id="status">
+      <option value="available">Available</option>
+      <option value="sale_pending">Sale Pending</option>
+      <option value="sold">Sold</option>
+    </select></label>
+    <label>Image URL <input id="image"></label>
+    <label>Description <textarea id="description"></textarea></label>
+    <button type="submit">Save</button>
+    <button id="resetBtn" type="button">Clear</button>
+  </form>
+
+  <h3>Current Inventory</h3>
+  <table border="1">
+    <thead><tr><th>Title</th><th>Type</th><th>Year</th><th>Price</th><th>Status</th><th></th></tr></thead>
+    <tbody id="inventoryTableBody"></tbody>
+  </table>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
