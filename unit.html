@@ -1,11 +1,142 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>Unit Details</title>
-<link rel="stylesheet" href="styles.css"></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit Details • Open Road Exchange</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // --- Simple placeholder detail loader ---
+    // In the future, this will dynamically load a specific unit by ID.
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id") || "example";
+
+      // Placeholder inventory data
+      const sampleUnits = {
+        "example-rv": {
+          title: "2023 Forest River Georgetown 36D7",
+          type: "RV",
+          price: "$189,995",
+          status: "Available",
+          description: "Luxury Class A motorhome with full body paint, dual slide outs, king bed, and residential appliances.",
+          specs: {
+            year: "2023",
+            make: "Forest River",
+            model: "Georgetown 36D7",
+            mileage: "12,340",
+            length: "36 ft",
+            fuel: "Gasoline",
+            sleeps: "6"
+          }
+        },
+        "example-trailer": {
+          title: "2022 24' ATC Enclosed Race Trailer",
+          type: "Trailer",
+          price: "$19,995",
+          status: "Available",
+          description: "All-aluminum race trailer with cabinets, tie-down system, LED lighting, and torsion axles.",
+          specs: {
+            year: "2022",
+            make: "ATC",
+            model: "24' Enclosed",
+            mileage: "N/A",
+            length: "24 ft",
+            fuel: "N/A",
+            sleeps: "N/A"
+          }
+        },
+        "example-boat": {
+          title: "2019 Yamaha SX210 Jet Boat",
+          type: "Misc",
+          price: "$34,500",
+          status: "Coming Soon",
+          description: "Twin-engine jet boat with seating for 10, trailer included, low hours.",
+          specs: {
+            year: "2019",
+            make: "Yamaha",
+            model: "SX210",
+            mileage: "112 hrs",
+            length: "21 ft",
+            fuel: "Gasoline",
+            sleeps: "N/A"
+          }
+        }
+      };
+
+      const unit = sampleUnits[id] || sampleUnits["example-rv"];
+
+      // Fill in page
+      document.getElementById("unit-title").innerText = unit.title;
+      document.getElementById("unit-price").innerText = unit.price;
+      document.getElementById("unit-status").innerText = unit.status;
+
+      document.getElementById("unit-type").innerHTML =
+        `<span class="badge badge-${unit.type.toLowerCase()}">${unit.type}</span>`;
+
+      document.getElementById("unit-description").innerText = unit.description;
+
+      let specHTML = "";
+      for (const key in unit.specs) {
+        specHTML += `<tr><th>${key}</th><td>${unit.specs[key]}</td></tr>`;
+      }
+      document.getElementById("unit-specs").innerHTML = specHTML;
+    });
+  </script>
+
+</head>
+
 <body>
-<header class="header"><div class="logo">OPEN ROAD <span>EXCHANGE</span></div>
-<nav><a href="index.html">Home</a><a href="inventory.html">Inventory</a></nav></header>
 
-<div id="detailContainer" class="detail-container"></div>
+<header>
+  <img src="logo.png" alt="Open Road Exchange" class="logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="finance.html">Financing</a>
+    <a href="tradein.html">Trade-In</a>
+    <a href="service.html">Service & Warranty</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</header>
 
-<script src="detail.js"></script>
-</body></html>
+<div class="main-wrapper">
+
+  <section class="hero">
+    <h1 id="unit-title">Loading…</h1>
+    <p id="unit-type"></p>
+
+    <p>
+      <strong>Price:</strong> <span id="unit-price"></span><br>
+      <strong>Status:</strong> <span id="unit-status"></span>
+    </p>
+
+    <p>
+      <a href="finance.html" class="button">Get Pre-Approved</a>
+      <a href="tradein.html" class="button secondary" style="margin-left:8px;">Value My Trade</a>
+    </p>
+  </section>
+
+  <section class="form-card">
+    <h2>Description</h2>
+    <p id="unit-description">Loading…</p>
+  </section>
+
+  <section class="form-card">
+    <h2>Specifications</h2>
+    <table class="table">
+      <tbody id="unit-specs"></tbody>
+    </table>
+  </section>
+
+</div>
+
+<div class="footer">
+  © 2025 Open Road Exchange — RV • Truck • Trailer • Misc
+</div>
+
+</body>
+</html>
+
